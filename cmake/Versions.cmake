@@ -162,17 +162,17 @@ set(XVIDCORE_VERSION 1.3.4)
 set(XVIDCORE_URI http://downloads.xvid.org/downloads/xvidcore-${XVIDCORE_VERSION}.tar.gz)
 set(XVIDCORE_HASH 4e9fd62728885855bc5007fe1be58df42e5e274497591fec37249e1052ae316f)
 
-set(OPENJPEG_VERSION 2.0)
+set(OPENJPEG_VERSION 1.5)
 set(OPENJPEG_URI https://github.com/uclouvain/openjpeg/archive/version.${OPENJPEG_VERSION}.tar.gz)
-set(OPENJPEG_HASH 5480f801a9f88af1a456145e41f3adede1dfae425bbac66a19c7eeeba94a1249)
+set(OPENJPEG_HASH 60662566595e02104c0f6d1052f8b1669624c646e62b6280d5fd5a66d4e92f8d)
 
 set(FAAD_VERSION 2-2.7)
 set(FAAD_URI http://downloads.sourceforge.net/faac/faad${FAAD_VERSION}.tar.bz2)
 set(FAAD_HASH 4c332fa23febc0e4648064685a3d4332)
 
-set(FFMPEG_VERSION 3.0)
+set(FFMPEG_VERSION 2.1.5)
 set(FFMPEG_URI http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2)
-set(FFMPEG_HASH 026859cc76dddffd809cad879db07658)
+set(FFMPEG_HASH c97586adb18e61f56b819b6ebb1d6a1d)
 
 set(FFTW_VERSION 3.3.4)
 set(FFTW_URI http://www.fftw.org/fftw-${FFTW_VERSION}.tar.gz)
