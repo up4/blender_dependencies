@@ -1,4 +1,3 @@
-if (BUILD_MODE STREQUAL Release)
 set(BLOSC_EXTRA_ARGS -DZLIB_INCLUDE_DIR=${LIBDIR}/zlib/include/
                      -DZLIB_LIBRARY=${LIBDIR}/zlib/lib/${ZLIB_LIBRARY}
                      -DBUILD_TESTS=OFF
@@ -15,4 +14,3 @@ ExternalProject_Add(external_blosc
   INSTALL_DIR ${LIBDIR}/blosc
 )
 add_dependencies(external_blosc external_zlib)
-endif (BUILD_MODE STREQUAL Release)
