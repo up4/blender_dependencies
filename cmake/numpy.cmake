@@ -1,8 +1,17 @@
-if (MSVC)
 if (BUILD_MODE STREQUAL Release)
 set(NUMPY_POSTFIX )
 message("Python_binary = ${PYTHON_BINARY}")
 message("Python_post = ${PYTHON_POSTFIX}")
+
+if (WIN32)
+  set(NUMPY_INSTALL
+    ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/build/numpy/src/external_numpy/build/lib.${PYTHON_ARCH2}-3.5" 
+    ${CMAKE_COMMAND} -E tar "cfvz" "${LIBDIR}/python35_numpy${PYTHON_POSTFIX}_1.11.tar.gz" ".")
+else()
+  set(NUMPY_INSTALL
+    ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_BINARY_DIR}/build/numpy/src/external_numpy/build/lib.${PYTHON_ARCH2}-3.5/numpy/" "${LIBDIR}/numpy/")
+endif()
+
 ExternalProject_Add(external_numpy
   URL ${NUMPY_URI}
   DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
@@ -12,9 +21,7 @@ ExternalProject_Add(external_numpy
   CONFIGURE_COMMAND ""
   LOG_BUILD 1
   BUILD_COMMAND ${PYTHON_BINARY} ${CMAKE_CURRENT_BINARY_DIR}/build/numpy/src/external_numpy/setup.py build
-  INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/build/numpy/src/external_numpy/build/lib.${PYTHON_ARCH2}-3.5" 
-                  ${CMAKE_COMMAND} -E tar "cfvz" "${LIBDIR}/python35_numpy${PYTHON_POSTFIX}_1.11.tar.gz" "."  
+  INSTALL_COMMAND ${NUMPY_INSTALL}
 )
 add_dependencies(external_numpy Make_Python_Environment)
 endif(BUILD_MODE STREQUAL Release)
-endif (MSVC)

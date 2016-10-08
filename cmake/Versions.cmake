@@ -124,9 +124,9 @@ set(REQUESTS_VERSION v2.5.0)
 set(REQUESTS_URI https://github.com/kennethreitz/requests/archive/${REQUESTS_VERSION}.zip)
 set(REQUESTS_HASH 3dcf565844d575f1c58f2d0e0b9c659a)
 
-set(NUMPY_VERSION v1.11.1)
-set(NUMPY_URI https://github.com/numpy/numpy/archive/${NUMPY_VERSION}.zip)
-set(NUMPY_HASH 6e96e023674b365d0f36fbbd01336ced)
+set(NUMPY_VERSION 1.11.1)
+set(NUMPY_URI http://downloads.sourceforge.net/project/numpy/NumPy/${NUMPY_VERSION}/numpy-${NUMPY_VERSION}.zip)
+set(NUMPY_HASH 5caa3428b24aaa07e72c79d115140e46)
 
 set(LAME_VERSION 3.99.5)
 set(LAME_URI http://downloads.sourceforge.net/project/lame/lame/3.99/lame-${LAME_VERSION}.tar.gz)
