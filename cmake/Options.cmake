@@ -71,13 +71,14 @@ else()
 
 	if(APPLE)
 		set(OSX_ARCHITECTURES x86_64)
-		set(OSX_DEPLOYMENT_TARGET 10.7)
-		set(OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk)
+		set(OSX_DEPLOYMENT_TARGET 10.9)
+		set(OSX_SDK_VERSION 10.12)
+		set(OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${OSX_SDK_VERSION}.sdk)
 
 		set(PLATFORM_CFLAGS "-isysroot ${OSX_SYSROOT} -mmacosx-version-min=${OSX_DEPLOYMENT_TARGET}")
 		set(PLATFORM_CXXFLAGS "-isysroot ${OSX_SYSROOT} -mmacosx-version-min=${OSX_DEPLOYMENT_TARGET} -std=c++11 -stdlib=libc++")
 		set(PLATFORM_LDFLAGS "-isysroot ${OSX_SYSROOT} -mmacosx-version-min=${OSX_DEPLOYMENT_TARGET}")
-		set(PLATFORM_BUILD_TARGET --build=x86_64-apple-darwin11.0.0) # OS X 10.7
+		set(PLATFORM_BUILD_TARGET --build=x86_64-apple-darwin13.0.0) # OS X 10.9
 		set(PLATFORM_CMAKE_FLAGS
 			 -DCMAKE_OSX_ARCHITECTURES:STRING=${OSX_ARCHITECTURES}
 			 -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=${OSX_DEPLOYMENT_TARGET}
