@@ -108,6 +108,7 @@ set(OSL_URI https://github.com/imageworks/OpenShadingLanguage/archive/Release-${
 set(OSL_HASH 5967245f664e43ef1ef1671f5ec32b25)
 
 set(PYTHON_VERSION 3.5.1)
+set(PYTHON_SHORT_VERSION 3.5)
 set(PYTHON_URI https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz)
 set(PYTHON_HASH e9ea6f2623fffcdd871b7b19113fde80)
 

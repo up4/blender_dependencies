@@ -10,8 +10,8 @@ cmake_minimum_required(VERSION 3.5)
 #   Note this currently only builds 64 bit versions of the dependencies, 32 bit is not supported or tested
 #
 # MAC OS X USAGE:
-#	Install autotools and yasm, for example with homebrew:
-#		brew install autoconf automake libtool yasm
+#	Install autotools, yasm, openssl and xz, for example with homebrew:
+#		brew install autoconf automake libtool yasm openssl xz
 #	Build with cmake as usual
 #
 ####################################################################################################

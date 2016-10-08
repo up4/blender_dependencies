@@ -35,14 +35,8 @@ string(TOLOWER ${BUILD_MODE} BOOST_BUILD_TYPE)
 
 if ( "${CMAKE_SIZEOF_VOID_P}" EQUAL "8" )
 	set(BOOST_ADDRESS_MODEL 64)
-	set(PYTHON_ARCH x64)
-	set(PYTHON_ARCH2 win-AMD64)
-	set(PYTHON_OUTPUTDIR ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/amd64/)
 else()
 	set(BOOST_ADDRESS_MODEL 32)
-	set(PYTHON_ARCH x86)
-	set(PYTHON_ARCH2 win32)
-	set(PYTHON_OUTPUTDIR ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/win32/)
 endif()
 
 ExternalProject_Add(external_boost

@@ -1,46 +1,87 @@
-set(PYTHON_VERSION 3.5.1)
-set(PYTHON_URI https://www.python.org/ftp/python/3.5.1/Python-${PYTHON_VERSION}.tar.xz)
-set(PYTHON_HASH e9ea6f2623fffcdd871b7b19113fde80)
 set(PYTHON_POSTFIX )
 if (BUILD_MODE STREQUAL Debug)
 	set (PYTHON_POSTFIX _d)
 endif (BUILD_MODE STREQUAL Debug)
-set(PYTHON_BINARY ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/run/python${PYTHON_POSTFIX}.exe)
 
-macro(cmake_to_dos_path MsysPath ResultingPath)
-  string(REPLACE "/" "\\" ${ResultingPath} "${MsysPath}" )
-endmacro()
+if (WIN32)
+	if ( "${CMAKE_SIZEOF_VOID_P}" EQUAL "8" )
+		set(PYTHON_ARCH x64)
+		set(PYTHON_ARCH2 win-AMD64)
+		set(PYTHON_OUTPUTDIR ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/amd64/)
+	else()
+		set(PYTHON_ARCH x86)
+		set(PYTHON_ARCH2 win32)
+		set(PYTHON_OUTPUTDIR ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/win32/)
+	endif()
 
-set(PYTHON_EXTERNALS_FOLDER ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/externals )
-set(DOWNLOADS_EXTERNALS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/Downloads/externals )
+	set(PYTHON_BINARY ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/run/python${PYTHON_POSTFIX}.exe)
 
-cmake_to_dos_path(${PYTHON_EXTERNALS_FOLDER} PYTHON_EXTERNALS_FOLDER_DOS)
-cmake_to_dos_path(${DOWNLOADS_EXTERNALS_FOLDER} DOWNLOADS_EXTERNALS_FOLDER_DOS)
+	macro(cmake_to_dos_path MsysPath ResultingPath)
+	  string(REPLACE "/" "\\" ${ResultingPath} "${MsysPath}" )
+	endmacro()
 
-message("Python externals = ${PYTHON_EXTERNALS_FOLDER}")
-message("Python externals_dos = ${PYTHON_EXTERNALS_FOLDER_DOS}")
-message("Python DOWNLOADS_EXTERNALS_FOLDER = ${DOWNLOADS_EXTERNALS_FOLDER}")
-message("Python DOWNLOADS_EXTERNALS_FOLDER_DOS = ${DOWNLOADS_EXTERNALS_FOLDER_DOS}")
+	set(PYTHON_EXTERNALS_FOLDER ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/externals )
+	set(DOWNLOADS_EXTERNALS_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/Downloads/externals )
 
+	cmake_to_dos_path(${PYTHON_EXTERNALS_FOLDER} PYTHON_EXTERNALS_FOLDER_DOS)
+	cmake_to_dos_path(${DOWNLOADS_EXTERNALS_FOLDER} DOWNLOADS_EXTERNALS_FOLDER_DOS)
 
-ExternalProject_Add(external_python
-  URL ${PYTHON_URI}
-  DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
-  URL_HASH MD5=${PYTHON_HASH}
-  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/python
-  PATCH_COMMAND echo mklink /D "${PYTHON_EXTERNALS_FOLDER_DOS}" "${DOWNLOADS_EXTERNALS_FOLDER_DOS}" &&
-					 mklink /D "${PYTHON_EXTERNALS_FOLDER_DOS}" "${DOWNLOADS_EXTERNALS_FOLDER_DOS}" &&
-					 ${PATCH_CMD}  --verbose -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python < ${CMAKE_CURRENT_SOURCE_DIR}/diffs/python.diff 
-  CONFIGURE_COMMAND ""
-  BUILD_COMMAND cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/ && set IncludeTkinter=false && call build.bat -e -p ${PYTHON_ARCH} -c ${BUILD_MODE} -k ${PYTHON_COMPILER_STRING}
-  INSTALL_COMMAND COMMAND ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.dll ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.dll && 
-                          ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.lib ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.lib && 
-					   	  ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.exp ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.exp &&
-						  ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/include ${LIBDIR}/python/include/Python3.5 &&
-						  ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/PC/pyconfig.h" ${LIBDIR}/python/include/Python3.5/pyconfig.h
-)
-Message("PythinRedist = ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/redist")
-Message("POutput = ${PYTHON_OUTPUTDIR}")
+	message("Python externals = ${PYTHON_EXTERNALS_FOLDER}")
+	message("Python externals_dos = ${PYTHON_EXTERNALS_FOLDER_DOS}")
+	message("Python DOWNLOADS_EXTERNALS_FOLDER = ${DOWNLOADS_EXTERNALS_FOLDER}")
+	message("Python DOWNLOADS_EXTERNALS_FOLDER_DOS = ${DOWNLOADS_EXTERNALS_FOLDER_DOS}")
+
+	ExternalProject_Add(external_python
+	  URL ${PYTHON_URI}
+	  DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
+	  URL_HASH MD5=${PYTHON_HASH}
+	  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/python
+	  PATCH_COMMAND echo mklink /D "${PYTHON_EXTERNALS_FOLDER_DOS}" "${DOWNLOADS_EXTERNALS_FOLDER_DOS}" &&
+						 mklink /D "${PYTHON_EXTERNALS_FOLDER_DOS}" "${DOWNLOADS_EXTERNALS_FOLDER_DOS}" &&
+						 ${PATCH_CMD}  --verbose -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python < ${CMAKE_CURRENT_SOURCE_DIR}/diffs/python.diff 
+	  CONFIGURE_COMMAND ""
+	  BUILD_COMMAND cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/pcbuild/ && set IncludeTkinter=false && call build.bat -e -p ${PYTHON_ARCH} -c ${BUILD_MODE} -k ${PYTHON_COMPILER_STRING}
+	  INSTALL_COMMAND COMMAND ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.dll ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.dll && 
+							  ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.lib ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.lib && 
+							  ${CMAKE_COMMAND} -E copy ${PYTHON_OUTPUTDIR}/python35${PYTHON_POSTFIX}.exp ${LIBDIR}/python/lib/python35${PYTHON_POSTFIX}.exp &&
+							  ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/include ${LIBDIR}/python/include/Python${PYTHON_SHORT_VERSION} &&
+							  ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/PC/pyconfig.h" ${LIBDIR}/python/include/Python${PYTHON_SHORT_VERSION}/pyconfig.h
+	)
+	Message("PythinRedist = ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/redist")
+	Message("POutput = ${PYTHON_OUTPUTDIR}")
+else()
+	if(APPLE)
+		# we need to manually add homebrew headers to get ssl module building
+		set(PYTHON_ARCH2 macosx-${OSX_DEPLOYMENT_TARGET}-x86_64)
+		set(PYTHON_EXTRA_INCLUDES "-I/usr/local/opt/openssl/include -I${OSX_SYSROOT}/usr/include")
+		set(PYTHON_EXTRA_LIBS "-L/usr/local/opt/openssl/lib")
+		set(PYTHON_CONFIGURE_ENV ${CONFIGURE_ENV} && export CFLAGS=${PYTHON_EXTRA_INCLUDES} && export LDFLAGS=${PYTHON_EXTRA_LIBS})
+	else()
+		set(PYTHON_ARCH2 linux)
+		set(PYTHON_CONFIGURE_ENV ${CONFIGURE_ENV})
+	endif()
+
+	set(PYTHON_BINARY ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/python.exe)
+
+	ExternalProject_Add(external_python
+	  URL ${PYTHON_URI}
+	  DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
+	  URL_HASH MD5=${PYTHON_HASH}
+	  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/python
+	  CONFIGURE_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && sh ./configure ${CONFIGURE_BUILD_TARGET} --prefix=${LIBDIR}/python
+	  BUILD_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && make -j${MAKE_THREADS}
+	  INSTALL_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && make install
+	  INSTALL_DIR ${LIBDIR}/python)
+
+	add_custom_command(  
+		OUTPUT ${LIBDIR}/python/release/python_x86_64.zip
+		WORKING_DIRECTORY ${LIBDIR}/python
+		COMMAND mkdir -p release
+		COMMAND zip -r release/python_x86_64.zip lib/python${PYTHON_SHORT_VERSION} lib/pkgconfig --exclude *__pycache__*)
+	add_custom_target(Package_Python ALL DEPENDS external_python ${LIBDIR}/python/release/python_x86_64.zip)
+	add_custom_target( Make_Python_Environment ALL DEPENDS Package_Python) 
+endif()
+
 if (MSVC)
 		 
 		add_custom_command(  
