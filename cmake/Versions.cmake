@@ -144,6 +144,10 @@ set(THEORA_VERSION 1.1.1)
 set(THEORA_URI http://downloads.xiph.org/releases/theora/libtheora-${THEORA_VERSION}.tar.bz2)
 set(THEORA_HASH b6ae1ee2fa3d42ac489287d3ec34c5885730b1296f0801ae577a35193d3affbc)
 
+set(FLAC_VERSION 1.3.1)
+set(FLAC_URI http://downloads.xiph.org/releases/flac/flac-${FLAC_VERSION}.tar.xz)
+set(FLAC_HASH 4773c0099dba767d963fd92143263be338c48702172e8754b9bc5103efe1c56c)
+
 set(VPX_VERSION 1.5.0)
 set(VPX_URI http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-${VPX_VERSION}.tar.bz2)
 set(VPX_HASH 306d67908625675f8e188d37a81fbfafdf5068b09d9aa52702b6fbe601c76797)
