@@ -36,4 +36,13 @@ ExternalProject_Add(external_opencolorio
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/opencolorio ${DEFAULT_CMAKE_FLAGS} ${OPENCOLORIO_EXTRA_ARGS}
   INSTALL_DIR ${LIBDIR}/opencolorio
 )
+
+if(NOT WIN32)
+	add_custom_command(
+		OUTPUT ${LIBDIR}/opencolorio/lib/libtinyxml.a
+		COMMAND cp ${CMAKE_CURRENT_BINARY_DIR}/build/opencolorio/src/external_opencolorio-build/ext/dist/lib/libtinyxml.a ${LIBDIR}/opencolorio/lib/libtinyxml.a
+		COMMAND cp ${CMAKE_CURRENT_BINARY_DIR}/build/opencolorio/src/external_opencolorio-build/ext/dist/lib/libyaml-cpp.a ${LIBDIR}/opencolorio/lib/libyaml-cpp.a)
+	add_custom_target(external_opencolorio_extra ALL DEPENDS external_opencolorio ${LIBDIR}/opencolorio/lib/libtinyxml.a)
+endif()
+
 add_dependencies(external_opencolorio external_boost)

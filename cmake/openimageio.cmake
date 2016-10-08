@@ -16,14 +16,16 @@ set(OPENIMAGEIO_EXTRA_ARGS
 	-DUSE_QT=OFF 
 	-DUSE_PYTHON=OFF 
 	-DUSE_GIF=OFF
-	-DOIIO_BUILD_TOOLS=OFF 
+	-DUSE_OPENCV=OFF
+	-DUSE_FFMPEG=OFF
+	-DOIIO_BUILD_TOOLS=ON
 	-DOIIO_BUILD_TESTS=OFF 
 	-DBUILD_TESTING=OFF 
 	-DZLIB_LIBRARY=${LIBDIR}/zlib/lib/${ZLIB_LIBRARY}
 	-DZLIB_INCLUDE_DIR=${LIBDIR}/zlib/include 
 	-DPNG_LIBRARY=${LIBDIR}/png/lib/libpng${LIBEXT} 
 	-DPNG_PNG_INCLUDE_DIR=${LIBDIR}/png/include 
-	-DTIFF_LIBRARY=${LIBDIR}/tiff/lib/tiff${LIBEXT} 
+	-DTIFF_LIBRARY=${LIBDIR}/tiff/lib/${LIBPREFIX}tiff${LIBEXT} 
 	-DTIFF_INCLUDE_DIR=${LIBDIR}/tiff/include 
 	-DJPEG_LIBRARY=${LIBDIR}/jpg/lib/${JPEG_LIBRARY}
 	-DJPEG_INCLUDE_DIR=${LIBDIR}/jpg/include
@@ -40,13 +42,24 @@ set(OPENIMAGEIO_EXTRA_ARGS
 	-DSTOP_ON_WARNING=OFF
 )
 
+if(NOT WIN32)
+	set(OPENIMAGEIO_EXTRA_ARGS
+		${OPENIMAGEIO_EXTRA_ARGS}
+		-DOCIO_CUSTOM=ON
+		-DOCIO_INCLUDES=${LIBDIR}/opencolorio/include
+		-DOCIO_LIBRARIES:FILEPATH=${LIBDIR}/opencolorio/lib/libOpenColorIO.a$<SEMICOLON>${LIBDIR}/opencolorio/lib/libtinyxml.a$<SEMICOLON>${LIBDIR}/opencolorio/lib/libyaml-cpp.a)
+endif()
+
 ExternalProject_Add(external_openimageio
   URL ${OPENIMAGEIO_URI}	
   DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
   URL_HASH MD5=${OPENIMAGEIO_HASH}
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/openimageio
-  PATCH_COMMAND ${PATCH_CMD} -p 0 -N -d ${CMAKE_CURRENT_BINARY_DIR}/build/openimageio/src/external_openimageio/src/include < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/OpenImageIO_GDI.diff
+  PATCH_COMMAND ${PATCH_CMD} -p 0 -N -d ${CMAKE_CURRENT_BINARY_DIR}/build/openimageio/src/external_openimageio < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/OpenImageIO_GDI.diff
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/openimageio ${DEFAULT_CMAKE_FLAGS} ${OPENIMAGEIO_EXTRA_ARGS}
   INSTALL_DIR ${LIBDIR}/openimageio
 )
-add_dependencies(external_openimageio external_png external_zlib external_ilmbase external_openexr external_jpeg external_boost external_tiff  )
+add_dependencies(external_openimageio external_png external_zlib external_ilmbase external_openexr external_jpeg external_boost external_tiff external_opencolorio)
+if(NOT WIN32)
+	add_dependencies(external_openimageio external_opencolorio_extra)
+endif()

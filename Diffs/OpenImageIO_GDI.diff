@@ -1,7 +1,7 @@
-Index: OpenImageIO/osdep.h
+Index: src/include/OpenImageIO/osdep.h
 ===================================================================
---- OpenImageIO/osdep.h	(revision 61595)
-+++ OpenImageIO/osdep.h	(working copy)
+--- src/include/OpenImageIO/osdep.h	(revision 61595)
++++ src/include/OpenImageIO/osdep.h	(working copy)
 @@ -34,6 +34,7 @@
  # define WIN32_LEAN_AND_MEAN
  # define VC_EXTRALEAN
@@ -10,10 +10,10 @@ Index: OpenImageIO/osdep.h
  # include <windows.h>
  #endif
  
-Index: OpenImageIO/platform.h
+Index: src/include/OpenImageIO/platform.h
 ===================================================================
---- OpenImageIO/platform.h	(revision 61595)
-+++ OpenImageIO/platform.h	(working copy)
+--- src/include/OpenImageIO/platform.h	(revision 61595)
++++ src/include/OpenImageIO/platform.h	(working copy)
 @@ -77,6 +77,9 @@
  # ifndef NOMINMAX
  #   define NOMINMAX
@@ -24,3 +24,40 @@ Index: OpenImageIO/platform.h
  # include <windows.h>
  #endif
  
+Index: src/cmake/externalpackages.cmake
+===================================================================
+--- src/cmake/externalpackages.cmake	(revision 61595)
++++ src/cmake/externalpackages.cmake	(working copy)
+@@ -228,15 +228,24 @@
+ # OpenColorIO Setup
+ 
+ if (USE_OCIO)
+-    # If 'OCIO_PATH' not set, use the env variable of that name if available
+-    if (NOT OCIO_PATH)
+-        if (NOT $ENV{OCIO_PATH} STREQUAL "")
+-            set (OCIO_PATH $ENV{OCIO_PATH})
++    if (OCIO_CUSTOM)
++        if (NOT OCIO_FIND_QUIETLY)
++            message (STATUS "Using custom OCIO")
+         endif ()
+-    endif()
+-
+-    find_package (OpenColorIO)
+-    FindOpenColorIO ()
++        set (OCIO_FOUND true)
++        # N.B. For a custom version, the caller had better set up the
++        # variables OCIO_INCLUDES and OCIO_LIBRARIES.
++    else ()
++		# If 'OCIO_PATH' not set, use the env variable of that name if available
++		if (NOT OCIO_PATH)
++			if (NOT $ENV{OCIO_PATH} STREQUAL "")
++				set (OCIO_PATH $ENV{OCIO_PATH})
++			endif ()
++		endif()
++
++		find_package (OpenColorIO)
++		FindOpenColorIO ()
++	endif ()
+ 
+     if (OCIO_FOUND)
+         if (NOT OpenColorIO_FIND_QUIETLY)
