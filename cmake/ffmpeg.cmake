@@ -1,7 +1,7 @@
 set(FFMPEG_CFLAGS "-I${mingw_LIBDIR}/lame/include -I${mingw_LIBDIR}/openjpeg/include/ -I${mingw_LIBDIR}/ogg/include -I${mingw_LIBDIR}/vorbis/include -I${mingw_LIBDIR}/theora/include -I${mingw_LIBDIR}/vpx/include -I${mingw_LIBDIR}/x264/include -I${mingw_LIBDIR}/xvidcore/include -I${mingw_LIBDIR}/dirac/include/dirac -I${mingw_LIBDIR}/schroedinger/include/schroedinger-1.0 -I${mingw_LIBDIR}/zlib/include")
 set(FFMPEG_LDFLAGS "-L${mingw_LIBDIR}/lame/lib -L${mingw_LIBDIR}/openjpeg/lib -L${mingw_LIBDIR}/ogg/lib -L${mingw_LIBDIR}/vorbis/lib -L${mingw_LIBDIR}/theora/lib -L${mingw_LIBDIR}/vpx/lib -L${mingw_LIBDIR}/x264/lib -L${mingw_LIBDIR}/xvidcore/lib -L${mingw_LIBDIR}/dirac/lib -L${mingw_LIBDIR}/schroedinger/lib -L${mingw_LIBDIR}/orc/lib -L${mingw_LIBDIR}/zlib/lib")
 set(FFMPEG_EXTRA_FLAGS --extra-cflags=${FFMPEG_CFLAGS} --extra-ldflags=${FFMPEG_LDFLAGS})
-set(FFMPEG_ENV set PKG_CONFIG_PATH=${mingw_LIBDIR}/schroedinger/lib/pkgconfig:${mingw_LIBDIR}/orc/lib/pkgconfig:${mingw_LIBDIR})
+set(FFMPEG_ENV PKG_CONFIG_PATH=${mingw_LIBDIR}/schroedinger/lib/pkgconfig:${mingw_LIBDIR}/orc/lib/pkgconfig:${mingw_LIBDIR})
 
 if(WIN32)
 	set(FFMPEG_EXTRA_FLAGS
@@ -16,7 +16,7 @@ else()
 		${FFMPEG_EXTRA_FLAGS}
 		--enable-static
 		--disable-shared
-		--disable-libopenjpeg)  # TODO enable, conflicts with extern/libopenjpeg
+		--enable-libopenjpeg)
 endif()
 
 ExternalProject_Add(external_ffmpeg
@@ -26,7 +26,7 @@ ExternalProject_Add(external_ffmpeg
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/ffmpeg
   CONFIGURE_COMMAND ${CONFIGURE_ENV} &&
 		cd ${CMAKE_CURRENT_BINARY_DIR}/build/ffmpeg/src/external_ffmpeg/ && 
-		${FFMPEG_ENV} && sh ./configure ${FFMPEG_EXTRA_FLAGS}
+		${FFMPEG_ENV} sh ./configure ${FFMPEG_EXTRA_FLAGS}
 		--disable-avfilter 
 		--disable-vdpau  
 		--disable-bzlib 

@@ -30,6 +30,15 @@ diff -ru /Users/brecht/dev/lib/deps/Downloads/SDL2-2.0.4/src/video/SDL_video.c .
      }
 --- CMakeLists.txt.old	2016-01-02 12:56:31 -0700
 +++ CMakeLists.txt	2016-10-03 11:24:24 -0600
+@@ -609,7 +609,7 @@
+       list(APPEND EXTRA_LIBS m)
+     endif()
+
+-    check_library_exists(iconv iconv_open "" HAVE_LIBICONV)
++    #check_library_exists(iconv iconv_open "" HAVE_LIBICONV)
+     if(HAVE_LIBICONV)
+       list(APPEND EXTRA_LIBS iconv)
+       set(HAVE_ICONV 1)
 @@ -1455,7 +1455,7 @@
  set(_INSTALL_LIBS "SDL2main")
  

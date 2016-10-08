@@ -9,12 +9,16 @@ set(HDF5_EXTRA_ARGS
 	-DBUILD_SHARED_LIBS=On
 )
 
+if(WIN32)
+	set(HDF5_PATCH ${PATCH_CMD} --verbose -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/hdf5/src/external_hdf5 < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/hdf5.diff)
+endif()
+
 ExternalProject_Add(external_hdf5
   URL ${HDF5_URI}
   DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
   URL_HASH MD5=${HDF5_HASH}
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/hdf5
-  PATCH_COMMAND ${PATCH_CMD} --verbose -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/hdf5/src/external_hdf5 < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/hdf5.diff 
+  PATCH_COMMAND ${HDF5_PATCH}
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/hdf5 ${HDF5_EXTRA_ARGS}
   INSTALL_DIR ${LIBDIR}/hdf5
 )

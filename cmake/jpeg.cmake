@@ -27,9 +27,9 @@ else(WIN32)
 	  URL ${JPEG_URI}
 	  DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
 	  URL_HASH MD5=${JPEG_HASH}
-	  CONFIGURE_COMMAND autoreconf -fiv && ./configure --prefix=${LIBDIR}/jpg NASM=yasm ${JPEG_EXTRA_ARGS}
+	  CONFIGURE_COMMAND ${CONFIGURE_ENV} && autoreconf -fiv && ./configure --prefix=${LIBDIR}/jpg NASM=yasm ${JPEG_EXTRA_ARGS}
 	  BUILD_IN_SOURCE 1
-	  BUILD_COMMAND make install
+	  BUILD_COMMAND ${CONFIGURE_ENV} && make install
 	  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/jpg
 	  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/jpg ${DEFAULT_CMAKE_FLAGS} ${JPEG_EXTRA_ARGS}
 	  INSTALL_DIR ${LIBDIR}/jpg

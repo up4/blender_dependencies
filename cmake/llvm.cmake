@@ -7,12 +7,18 @@ set(LLVM_EXTRA_ARGS
  -DLLVM_ENABLE_TERMINFO=OFF
    )
 
+IF(WIN32)
+	set(LLVM_GENERATOR "NMake Makefiles")
+ELSE()
+	set(LLVM_GENERATOR "Unix Makefiles")
+ENDIF()
+
 #short project name due to long filename issues on windows 
 ExternalProject_Add(ll
   URL ${LLVM_URI}
   DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
   URL_HASH MD5=${LLVM_HASH}
-  CMAKE_GENERATOR "NMake Makefiles"
+  CMAKE_GENERATOR ${LLVM_GENERATOR}
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/ll
   PATCH_COMMAND ${PATCH_CMD} -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/ll/src/ll < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/llvm-alloca-fix.patch.patch
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/llvm ${DEFAULT_CMAKE_FLAGS} ${LLVM_EXTRA_ARGS}
