@@ -98,7 +98,7 @@ add_custom_target( Harvest_Release_Results
 #python
 								${CMAKE_COMMAND} -E copy ${LIBDIR}/python35.tar.gz ${HARVEST_TARGET}/Release/python35.tar.gz &&  
 #requests
-								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/requests ${HARVEST_TARGET}/Release/site-packages &&  
+								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/requests ${HARVEST_TARGET}/Release/site-packages/requests &&  
 #numpy
 								${CMAKE_COMMAND} -E copy ${LIBDIR}/python35_numpy${PYTHON_POSTFIX}_1.11.tar.gz ${HARVEST_TARGET}/Release/python35_numpy_1.11.tar.gz   
 							DEPENDS  )

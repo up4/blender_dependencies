@@ -119,9 +119,9 @@ set(OPENVDB_VERSION 3_1_0)
 set(OPENVDB_URI http://www.openvdb.org/download/openvdb_${OPENVDB_VERSION}_library.zip )
 set(OPENVDB_HASH 0e25a2e183c46963899ab3f77e3533ac)
 
-set(REQUESTS_VERSION v2.5.0)
+set(REQUESTS_VERSION v2.10.0)
 set(REQUESTS_URI https://github.com/kennethreitz/requests/archive/${REQUESTS_VERSION}.zip)
-set(REQUESTS_HASH 3dcf565844d575f1c58f2d0e0b9c659a)
+set(REQUESTS_HASH 6ebefdf0210c7f0933f61501334e46c3)
 
 set(NUMPY_VERSION v1.11.1)
 set(NUMPY_URI https://github.com/numpy/numpy/archive/${NUMPY_VERSION}.zip)
@@ -186,7 +186,11 @@ set(LAPACK_VERSION 3.6.0)
 set(LAPACK_URI http://www.netlib.org/lapack/lapack-${LAPACK_VERSION}.tgz)
 set(LAPACK_HASH f2f6c67134e851fe189bb3ca1fbb5101 ) 
 
-
 set(SNDFILE_VERSION 1.0.26)
 set(SNDFILE_URI http://www.mega-nerd.com/libsndfile/files/libsndfile-${SNDFILE_VERSION}.tar.gz)
 set(SNDFILE_HASH ec810a0c60c08772a8a5552704b63393)
+
+set(HIDAPI_VERSION 0.7.0)
+set(HIDAPI_URI https://github.com/downloads/signal11/hidapi/hidapi-${HIDAPI_VERSION}.zip)
+set(HIDAPI_HASH 477b2dd7b34e96fb20b1bcd28143b3e1)
+
