@@ -38,6 +38,8 @@ set(OPENIMAGEIO_EXTRA_ARGS
 	-DOPENEXR_INCLUDE_DIR=${LIBDIR}/openexr/include/ 
 	-DOPENEXR_ILMIMF_LIBRARIES=${LIBDIR}/openexr/lib/${LIBPREFIX}IlmImf-2_2${LIBEXT} 
 	-DSTOP_ON_WARNING=OFF
+	-DWEBP_INCLUDE_DIR=${LIBDIR}/webp/include
+	-DWEBP_LIBRARY=${LIBDIR}/webp/webp${LIBEXT} 
 )
 
 ExternalProject_Add(external_openimageio

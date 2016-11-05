@@ -194,3 +194,6 @@ set(HIDAPI_VERSION 0.7.0)
 set(HIDAPI_URI https://github.com/downloads/signal11/hidapi/hidapi-${HIDAPI_VERSION}.zip)
 set(HIDAPI_HASH 477b2dd7b34e96fb20b1bcd28143b3e1)
 
+set(WEBP_VERSION 0.5.1)
+set(WEBP_URI https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-${WEBP_VERSION}.tar.gz)
+set(WEBP_HASH 3d7db92ebba5b4f679413d25c6040881)
