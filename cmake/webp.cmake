@@ -1,5 +1,4 @@
 if(WIN32)
-	if (BUILD_MODE STREQUAL Release)
 		set(WEBP_EXTRA_ARGS  
 			-DWEBP_HAVE_SSE2=On
 			-DWEBP_HAVE_SSE41=Off 
@@ -24,5 +23,4 @@ if(WIN32)
 			INSTALL_DIR ${LIBDIR}/webp
 		)
 		
-	endif (BUILD_MODE STREQUAL Release)
 endif(WIN32)
