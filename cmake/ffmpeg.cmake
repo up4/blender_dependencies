@@ -59,14 +59,13 @@ ExternalProject_Add(external_ffmpeg
 		--disable-ssse3 
 		--enable-ffplay 
 		--disable-openssl
-#		--disable-securetransport
+		--disable-securetransport
 		--disable-indev=avfoundation
 		--disable-indev=qtkit
 #		--disable-sdl
 		--disable-gnutls
 		--disable-vda
-#		--disable-videotoolbox
-  PATCH_COMMAND ${PATCH_CMD} --verbose -p 0 -N -d ${CMAKE_CURRENT_BINARY_DIR}/build/ffmpeg/src/external_ffmpeg < ${CMAKE_CURRENT_SOURCE_DIR}/Diffs/ffmpeg.diff 
+		--disable-videotoolbox
   BUILD_COMMAND ${CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/ffmpeg/src/external_ffmpeg/ && make -j${MAKE_THREADS}
   INSTALL_COMMAND ${CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/ffmpeg/src/external_ffmpeg/ && make install
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/ffmpeg ${DEFAULT_CMAKE_FLAGS}
