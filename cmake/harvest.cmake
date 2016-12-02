@@ -13,8 +13,8 @@ if(WIN32)
 if (BUILD_MODE STREQUAL Release)
 add_custom_target( Harvest_Release_Results  
 #Zlib Rename the lib file and copy the include/bin folders
-                        COMMAND ${CMAKE_COMMAND} -E copy ${LIBDIR}/zlib/lib/zlibstatic.lib ${HARVEST_TARGET}/zlib/lib/libz_st.lib &&
-							    ${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/zlib/include/ ${HARVEST_TARGET}/zlib/include/ &&
+								COMMAND ${CMAKE_COMMAND} -E copy ${LIBDIR}/zlib/lib/zlibstatic.lib ${HARVEST_TARGET}/zlib/lib/libz_st.lib &&
+								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/zlib/include/ ${HARVEST_TARGET}/zlib/include/ &&
 								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/zlib/bin/ ${HARVEST_TARGET}/zlib/bin/ &&
 #Boost copy lib + rename boost_1_60 to boost 
 								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/boost/lib/ ${HARVEST_TARGET}/boost/lib/ &&
@@ -98,9 +98,12 @@ add_custom_target( Harvest_Release_Results
 #python
 								${CMAKE_COMMAND} -E copy ${LIBDIR}/python35.tar.gz ${HARVEST_TARGET}/Release/python35.tar.gz &&  
 #requests
-								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/requests ${HARVEST_TARGET}/Release/site-packages &&  
+								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/requests ${HARVEST_TARGET}/Release/site-packages/requests &&  
 #numpy
-								${CMAKE_COMMAND} -E copy ${LIBDIR}/python35_numpy${PYTHON_POSTFIX}_1.11.tar.gz ${HARVEST_TARGET}/Release/python35_numpy_1.11.tar.gz   
+								${CMAKE_COMMAND} -E copy ${LIBDIR}/python35_numpy${PYTHON_POSTFIX}_1.11.tar.gz ${HARVEST_TARGET}/Release/python35_numpy_1.11.tar.gz   &&
+#webp, straight up copy 
+								${CMAKE_COMMAND} -E copy_directory ${LIBDIR}/webp ${HARVEST_TARGET}/webp  
+								
 							DEPENDS  )
 endif (BUILD_MODE STREQUAL Release)
 
@@ -251,6 +254,8 @@ harvest(tiff/include tiff/include "*.h")
 harvest(tiff/lib tiff/lib "*.a")
 harvest(vorbis/lib ffmpeg/lib "*.a")
 harvest(vpx/lib ffmpeg/lib "*.a")
+harvest(webp/include webp/include "*.h")
+harvest(webp/lib webp/lib "*.a")
 harvest(x264/lib ffmpeg/lib "*.a")
 harvest(xvidcore/lib ffmpeg/lib "*.a")
 

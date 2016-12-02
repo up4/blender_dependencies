@@ -40,6 +40,8 @@ set(OPENIMAGEIO_EXTRA_ARGS
 	-DOPENEXR_INCLUDE_DIR=${LIBDIR}/openexr/include/ 
 	-DOPENEXR_ILMIMF_LIBRARIES=${LIBDIR}/openexr/lib/${LIBPREFIX}IlmImf-2_2${LIBEXT} 
 	-DSTOP_ON_WARNING=OFF
+	-DWEBP_INCLUDE_DIR=${LIBDIR}/webp/include
+	-DWEBP_LIBRARY=${LIBDIR}/webp/webp${LIBEXT} 
 )
 
 if(NOT WIN32)
@@ -59,7 +61,7 @@ ExternalProject_Add(external_openimageio
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${LIBDIR}/openimageio ${DEFAULT_CMAKE_FLAGS} ${OPENIMAGEIO_EXTRA_ARGS}
   INSTALL_DIR ${LIBDIR}/openimageio
 )
-add_dependencies(external_openimageio external_png external_zlib external_ilmbase external_openexr external_jpeg external_boost external_tiff external_opencolorio)
+add_dependencies(external_openimageio external_png external_zlib external_ilmbase external_openexr external_jpeg external_boost external_tiff external_webp external_opencolorio)
 if(NOT WIN32)
 	add_dependencies(external_openimageio external_opencolorio_extra)
 endif()

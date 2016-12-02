@@ -52,6 +52,7 @@ include(cmake/openvdb.cmake)
 include(cmake/python.cmake)
 include(cmake/requests.cmake)
 include(cmake/numpy.cmake)
+include(cmake/webp.cmake)
 
 if (ENABLE_MINGW64)
 	if ( "${CMAKE_SIZEOF_VOID_P}" EQUAL "8" )
