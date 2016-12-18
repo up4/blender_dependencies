@@ -14,10 +14,10 @@ set(JPEG_VERSION 1.4.2)
 set(JPEG_URI https://github.com/libjpeg-turbo/libjpeg-turbo/archive/${JPEG_VERSION}.tar.gz)
 set(JPEG_HASH f9804884c1c41eb7f4febb9353a2cb27)
 
-set(BOOST_VERSION 1.60.0)
-set(BOOST_VERSION_NODOTS 1_60_0)
+set(BOOST_VERSION 1.62.0)
+set(BOOST_VERSION_NODOTS 1_62_0)
 set(BOOST_URI http://sourceforge.net/projects/boost/files/boost/${BOOST_VERSION}/boost_${BOOST_VERSION_NODOTS}.tar.bz2/download)
-set(BOOST_MD5 65a840e1a0b13a558ff19eeb2c4f0cbe)
+set(BOOST_MD5 5fb94629535c19e48703bdb2b2e9490f)
 
 set(BLOSC_VERSION 1.7.1)
 set(BLOSC_URI https://github.com/Blosc/c-blosc/archive/v${BLOSC_VERSION}.zip)
@@ -48,7 +48,7 @@ set(FREEGLUT_URI http://pilotfiber.dl.sourceforge.net/project/freeglut/freeglut/
 set(FREEGLUT_HASH 90c3ca4dd9d51cf32276bc5344ec9754 ) 
 
 set(HDF5_VERSION 1.8.17)
-set(HDF5_URI http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.zip )
+set(HDF5_URI https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-${HDF5_VERSION}/src/hdf5-${HDF5_VERSION}.zip )
 set(HDF5_HASH be2642d976b49d6cc60a32b0bd8f829a ) 
 
 set(ALEMBIC_VERSION 1.6.0)
@@ -91,9 +91,9 @@ set(LLVM_HASH a20669f75967440de949ac3b1bad439c)
 set(CLANG_URI http://llvm.org/releases/${LLVM_VERSION}/cfe-${LLVM_VERSION}.src.tar.gz)
 set(CLANG_HASH 87945973b7c73038871c5f849a818588)
 
-set(OPENIMAGEIO_VERSION 1.7.8)
+set(OPENIMAGEIO_VERSION 1.7.9)
 set(OPENIMAGEIO_URI https://github.com/OpenImageIO/oiio/archive/Release-${OPENIMAGEIO_VERSION}.zip)
-set(OPENIMAGEIO_HASH e156e3669af0e1373142ab5e8f13de66)
+set(OPENIMAGEIO_HASH 4121cb0e0433bda6a7ef32c8628a149f)
 
 set(TIFF_VERSION 4.0.6)
 set(TIFF_URI http://download.osgeo.org/libtiff/tiff-${TIFF_VERSION}.tar.gz)
@@ -157,7 +157,7 @@ set(ORC_URI https://gstreamer.freedesktop.org/src/orc/orc-${ORC_VERSION}.tar.xz)
 set(ORC_HASH c1b1d54a58f26d483f0b3881538984789fe5d5460ab8fab74a1cacbd3d1c53d1)
 
 set(SCHROEDINGER_VERSION 1.0.11)
-set(SCHROEDINGER_URI http://diracvideo.org/download/schroedinger/schroedinger-${SCHROEDINGER_VERSION}.tar.gz)
+set(SCHROEDINGER_URI https://download.videolan.org/contrib/schroedinger/schroedinger-${SCHROEDINGER_VERSION}.tar.gz)
 set(SCHROEDINGER_HASH 1e572a0735b92aca5746c4528f9bebd35aa0ccf8619b22fa2756137a8cc9f912)
 
 set(X264_URI http://download.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-20160401-2245-stable.tar.bz2)
@@ -175,9 +175,9 @@ set(FAAD_VERSION 2-2.7)
 set(FAAD_URI http://downloads.sourceforge.net/faac/faad${FAAD_VERSION}.tar.bz2)
 set(FAAD_HASH 4c332fa23febc0e4648064685a3d4332)
 
-set(FFMPEG_VERSION 3.2.1)
+set(FFMPEG_VERSION 3.2.2)
 set(FFMPEG_URI http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2)
-set(FFMPEG_HASH cede174178e61f882844f5870c35ce72)
+set(FFMPEG_HASH 82cf25d36df70ee995bbdb3efc079934)
 
 set(FFTW_VERSION 3.3.4)
 set(FFTW_URI http://www.fftw.org/fftw-${FFTW_VERSION}.tar.gz)

@@ -68,6 +68,7 @@ else()
 	  DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Downloads
 	  URL_HASH MD5=${PYTHON_HASH}
 	  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/build/python
+	  PATCH_COMMAND ${PATCH_CMD} --verbose -p 0 -d ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python < ${CMAKE_CURRENT_SOURCE_DIR}/diffs/python_apple.diff 
 	  CONFIGURE_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && sh ./configure ${CONFIGURE_BUILD_TARGET} --prefix=${LIBDIR}/python
 	  BUILD_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && make -j${MAKE_THREADS}
 	  INSTALL_COMMAND ${PYTHON_CONFIGURE_ENV} && cd ${CMAKE_CURRENT_BINARY_DIR}/build/python/src/external_python/ && make install
