@@ -1,5 +1,5 @@
---- tree/LeafNode.h	2015-10-01 15:55:33 -0600
-+++ tree/LeafNode.h	2016-03-26 13:12:22 -0600
+--- openvdb/tree/LeafNode.h	2015-10-01 15:55:33 -0600
++++ openvdb/tree/LeafNode.h	2016-03-26 13:12:22 -0600
 @@ -70,13 +70,14 @@
      typedef boost::shared_ptr<LeafNode>  Ptr;
      typedef util::NodeMask<Log2Dim>      NodeMaskType;
@@ -22,8 +22,8 @@
          LEVEL       = 0;            // level 0 = leaf
  
      /// @brief ValueConverter<T>::Type is the type of a LeafNode having the same
---- PlatformConfig.h	2016-03-30 15:09:49 -0600
-+++ PlatformConfig.h	2016-04-01 07:00:38 -0600
+--- openvdb/PlatformConfig.h	2016-03-30 15:09:49 -0600
++++ openvdb/PlatformConfig.h	2016-04-01 07:00:38 -0600
 @@ -47,7 +47,7 @@
      #if !defined(OPENVDB_OPENEXR_STATICLIB) && !defined(OPENEXR_DLL)
          #define OPENEXR_DLL

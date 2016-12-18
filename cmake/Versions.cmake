@@ -116,9 +116,9 @@ set(TBB_VERSION 44_20160128)
 set(TBB_URI https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb${TBB_VERSION}oss_src_0.tgz )
 set(TBB_HASH 9d8a4cdf43496f1b3f7c473a5248e5cc)
 
-set(OPENVDB_VERSION 3_1_0)
-set(OPENVDB_URI http://www.openvdb.org/download/openvdb_${OPENVDB_VERSION}_library.zip )
-set(OPENVDB_HASH 0e25a2e183c46963899ab3f77e3533ac)
+set(OPENVDB_VERSION 3.1.0)
+set(OPENVDB_URI https://github.com/dreamworksanimation/openvdb/archive/v${OPENVDB_VERSION}.zip )
+set(OPENVDB_HASH c8aacb34bc7aedc390ce301f65393723)
 
 set(REQUESTS_VERSION v2.10.0)
 set(REQUESTS_URI https://github.com/kennethreitz/requests/archive/${REQUESTS_VERSION}.zip)
