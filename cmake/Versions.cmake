@@ -48,7 +48,7 @@ set(FREEGLUT_URI http://pilotfiber.dl.sourceforge.net/project/freeglut/freeglut/
 set(FREEGLUT_HASH 90c3ca4dd9d51cf32276bc5344ec9754 ) 
 
 set(HDF5_VERSION 1.8.17)
-set(HDF5_URI http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.zip )
+set(HDF5_URI https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-${HDF5_VERSION}/src/hdf5-${HDF5_VERSION}.zip )
 set(HDF5_HASH be2642d976b49d6cc60a32b0bd8f829a ) 
 
 set(ALEMBIC_VERSION 1.6.0)
@@ -157,7 +157,7 @@ set(ORC_URI https://gstreamer.freedesktop.org/src/orc/orc-${ORC_VERSION}.tar.xz)
 set(ORC_HASH c1b1d54a58f26d483f0b3881538984789fe5d5460ab8fab74a1cacbd3d1c53d1)
 
 set(SCHROEDINGER_VERSION 1.0.11)
-set(SCHROEDINGER_URI http://diracvideo.org/download/schroedinger/schroedinger-${SCHROEDINGER_VERSION}.tar.gz)
+set(SCHROEDINGER_URI https://download.videolan.org/contrib/schroedinger/schroedinger-${SCHROEDINGER_VERSION}.tar.gz)
 set(SCHROEDINGER_HASH 1e572a0735b92aca5746c4528f9bebd35aa0ccf8619b22fa2756137a8cc9f912)
 
 set(X264_URI http://download.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-20160401-2245-stable.tar.bz2)
